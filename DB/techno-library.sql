@@ -1,4 +1,9 @@
+#drop database techno_library;
+
 create database techno_library;
+
+
+
 
 use techno_library;
 
@@ -11,8 +16,8 @@ create table users(
 );
 
 create table user_book (
-	ID int primary key auto_increment,
-    FK_user int,
+	FK_user int,
     book int,
-    constraint FK_USER_UB foreign key (FK_user) references users(ID)
+    constraint FK_USER_UB foreign key (FK_user) references users(ID),
+	constraint PK_UB primary key (FK_user,book)
 );
