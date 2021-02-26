@@ -43,8 +43,8 @@
                 <h2>Algún eslogan</h2>
                 <p>Algún comentario antes del buscador</p>
                 <article class="search-input-button">
-                    <input type="text" placeholder="Título, autor o palabra clave" />
-                    <button>Buscar</button>
+                    <input id="txtSearch" type="text" placeholder="Título, autor o palabra clave" />
+                    <button id="btnSearch">Buscar</button>
                 </article>
             </section>
         </section>
@@ -75,9 +75,24 @@
     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 
     <script>
-        apiObject = new Api()
-        console.log(apiObject.searchBooks("Prueba"))
-    </script>
+
+        apiObject = new Api()        
+
+        document.getElementById('btnSearch').
+        addEventListener('click', 
+            event => {
+                txtSearch = document.getElementById('txtSearch')
+                
+                apiObject.searchBooks(txtSearch.value)
+                console.log(apiObject.getData())        
+                //console.log(event) 
+            }    
+        )
+        
+
+       
+        
+    </script> 
 
 </body>
 </html>
