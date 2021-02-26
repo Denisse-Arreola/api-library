@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\css"
+    "\\css",
+    "\\php",
+    "\\php\\classes"
   ],
-  "SelectedNode": "\\css\\general.css",
+  "SelectedNode": "\\php\\classes\\user.php",
   "PreviewInSolutionExplorer": false
 }
