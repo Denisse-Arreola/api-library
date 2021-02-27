@@ -25,16 +25,6 @@ class usuario{
             $this->bookList=array();
         }
 
-        if(func_num_args()==2){
-            $this->id=0;
-            $this->firstname="";
-            $this->lastname="";
-            $this->email=$args[0];
-            $this->password=$args[1];
-            $this->bookList=array();
-            verifyUser($args[0], $args[1]);
-        }
-
         //Constructor de busqueda por medio del id del usuario
         if(func_num_args()==1){
             $sql= "select * from vw_user where id= ?;";
@@ -63,6 +53,18 @@ class usuario{
             $conn->close();
         }
 
+        if(func_num_args()==2){
+            $this->id=0;
+            $this->firstname="";
+            $this->lastname="";
+            $this->email=$args[0];
+            $this->password=$args[1];
+            $this->bookList=array();
+            self::verifyUser($args[0], $args[1]);
+        }
+
+        
+
     }
 
     //Función para obtener el arreglo de libros del usuario
@@ -88,7 +90,7 @@ class usuario{
     public function verifyUser($email_, $passwd_){
         $sql = "select * from vw_user where email=? and paswd=?;";
         $conn=mysqlConnection::getConnection();
-        $command=$conn->prepara($sql);
+        $command=$conn->prepare($sql);
         $command->bind_param('ss', $email_, $passwd_);
         $command->bind_result(
                 $id_,
@@ -102,19 +104,13 @@ class usuario{
                 $this->id=$id_;
                 $this->firstname=$firstname_;
                 $this->lastname=$lastname_;
-                $this->email=$email;
-                $this->password=$password;
+                $this->email=$email_;
+                $this->password=$password_;
                 $this->bookList=self::getList($id_);               
 
-                array_push(json_decode(self::getJsonObject()));
+                json_decode(self::getJSON());
             }else{
-                $this->id=0;
-                $this->firstname="";
-                $this->lastname="";
-                $this->email="No encontrado";
-                $this->password="Error";
-                $this->bookList=array();   
-                array_push(json_decode(self::getJsonObject()));
+                echo json_encode(array("error"=>"No encontrado","res"=>false));
             }
 
             mysqli_stmt_close($command);
