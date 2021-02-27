@@ -96,14 +96,25 @@
 
          document.getElementById("btnlogin").addEventListener("click",event=>{
              console.log("HOLAAAAA")
-         let email = document.getElementById("txtemail").value
-         let password =  document.getElementById("txtpassword").value 
-        
-         console.log(email)
-         console.log(password)
+                let myEmail = document.getElementById("txtemail").value
+                let myPassword =  document.getElementById("txtpassword").value 
+                
+               // console.log(email)
+               // console.log(password)
+                let params = new URLSearchParams(
+                    {
+                        email:myEmail,
+                        password:myPassword
+                    }
+                ).toString();
 
-         
-         })
+                fetch("http://localhost/api-library/php/classes/testing.php?"+params).
+                then(
+                    res=>res.json()
+                ).then(
+                    data=>{console.log(data)}
+                )   
+                })
 
     </script>
 
