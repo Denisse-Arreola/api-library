@@ -22,14 +22,14 @@
             <article class="login-section">
                 <article class="input user">
                     <i class="fas fa-user" style="font-size:24px;"></i>
-                    <input class="input-text" type="text" placeholder="Correo" />
+                    <input class="input-text" id="txtemail" type="text" placeholder="Correo" />
                 </article>
                 <article class="input pass">
                     <i class="fas fa-lock" style="font-size:24px;"></i>
-                    <input class="input-text" type="password" placeholder="Contraseña" />
+                    <input class="input-text" id="txtpassword" type="password" placeholder="Contraseña" />
                 </article>
                 <article>
-                    <button>Iniciar</button>
+                    <button id="btnlogin">Iniciar</button>
                     <a href="#">Registrate</a>
                 </article>
             </article>
@@ -93,6 +93,21 @@
        
         
     </script> 
+    <script>
+         /* Inicio de sesion  (Leer valores) */
+
+         document.getElementById("btnlogin").addEventListener("click",event=>{
+             console.log("HOLAAAAA")
+         let email = document.getElementById("txtemail").value
+         let password =  document.getElementById("txtpassword").value 
+        
+         console.log(email)
+         console.log(password)
+
+         
+         })
+
+    </script>
 
 </body>
 </html>
