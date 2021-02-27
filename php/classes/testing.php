@@ -2,13 +2,12 @@
 
 require_once("user.php");
 
-echo "Esto es una prueba";
-echo "</br>";
+// echo "Esto es una prueba";
+// echo "</br>";
 
 $testing = new usuario("arxie.denisse@gmail.com","12345");
 
-echo json_encode($testing);
-
+echo $testing->verifyUser();
 
 
 
