@@ -38,6 +38,7 @@ class usuario{
                 $email_,
                 $password_
             );
+
             $command->execute();
             if ($command->fetch()){
                 $this->id=$id_;
@@ -60,14 +61,14 @@ class usuario{
             $this->email=$args[0];
             $this->password=$args[1];
             $this->bookList=array();
-            self::verifyUser($args[0], $args[1]);
+            
         }
 
         
 
     }
 
-    //Función para obtener el arreglo de libros del usuario
+    //Funciï¿½n para obtener el arreglo de libros del usuario
     public function getList($user){
         $sql = "select * from vw_user_list where id=?;";
         $conn=mysqlConnection::getConnection();
@@ -87,11 +88,11 @@ class usuario{
         $conn->close();
     }
 
-    public function verifyUser($email_, $passwd_){
+    public function verifyUser(){
         $sql = "select * from vw_user where email=? and paswd=?;";
         $conn=mysqlConnection::getConnection();
         $command=$conn->prepare($sql);
-        $command->bind_param('ss', $email_, $passwd_);
+        $command->bind_param('ss', $this->email, $this->password);
         $command->bind_result(
                 $id_,
                 $firstname_,
@@ -101,6 +102,7 @@ class usuario{
             );
             $command->execute();
             if ($command->fetch()){
+
                 $this->id=$id_;
                 $this->firstname=$firstname_;
                 $this->lastname=$lastname_;
@@ -108,9 +110,11 @@ class usuario{
                 $this->password=$password_;
                 $this->bookList=self::getList($id_);               
 
-                json_decode(self::getJSON());
+                self::getJSON();
+
             }else{
-                echo json_encode(array("error"=>"No encontrado","res"=>false));
+                return json_encode(array("error"=>"No encontrado","res"=>false));
+                die;
             }
 
             mysqli_stmt_close($command);
