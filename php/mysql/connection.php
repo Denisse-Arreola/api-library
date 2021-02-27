@@ -6,7 +6,7 @@ class mysqlConnection {
                   
 
                $var='{ "mysqlCrendentials" : { "server" : "localhost", "user" : "root", "pass" : "", "db" : "techno_library" } }';                              
-               //$var='{ "mysqlCrendentials" : { "server" : "localhost", "user" : "root", "pass" : "losseisbastardos12", "db" : "paradise" } }';
+               //$var='{ "mysqlCrendentials" : { "server" : "localhost", "user" : "root", "pass" : "Losseisbastardos12_", "db" : "techno_library" } }';
 
                $config=json_decode($var,true);
 
