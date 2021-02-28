@@ -2,13 +2,21 @@
 
 require_once("user.php");
 
-// echo "Esto es una prueba";
-// echo "</br>";
-
-$testing = new usuario("arxie.denisse@gmail.com","12345");
-
-echo $testing->verifyUser();
+        if(isset($_GET["email"])&&isset($_GET["password"])){
+            $email =$_GET["email"];
+            $password =$_GET["password"];
 
 
 
+            $testing = new usuario($email,$password);
+
+
+            echo $testing->verifyUser();
+
+
+
+
+            } else{
+                echo json_encode(array('error'=>false));
+            }
 ?>

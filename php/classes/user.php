@@ -110,7 +110,7 @@ class usuario{
                 $this->password=$password_;
                 $this->bookList=self::getList($id_);               
 
-                self::getJSON();
+                return self::getJSON();
 
             }else{
                 return json_encode(array("error"=>"No encontrado","res"=>false));
