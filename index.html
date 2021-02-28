@@ -144,8 +144,11 @@
                 txtSearch = document.getElementById('txtSearch')
                 
                 apiObject.searchBooks(txtSearch.value)
-                console.log(apiObject.getData())     
-                //console.log(event) 
+
+                let array = apiObject.getData()
+                console.log(array)        
+
+
             }    
         )
         
@@ -155,11 +158,12 @@
     <script>
          /* Inicio de sesion  (Leer valores) */
 
-        document.getElementById("btnlogin").addEventListener("click", event => {
+            document.getElementById("btnlogin").addEventListener("click", event => {
             console.log("HOLAAAAA")
 
             let myEmail = document.getElementById("txtemail").value
             let myPassword = document.getElementById("txtpassword").value 
+
                 
                // console.log(email)
                // console.log(password)
