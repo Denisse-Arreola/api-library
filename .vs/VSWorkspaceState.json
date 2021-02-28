@@ -2,9 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\css",
-    "\\php",
+    "\\js",
     "\\php\\classes"
   ],
-  "SelectedNode": "\\php\\classes\\user.php",
+  "SelectedNode": "\\js\\Book.js",
   "PreviewInSolutionExplorer": false
 }
