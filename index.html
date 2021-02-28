@@ -59,7 +59,7 @@
 
     <section class="list-books container" id="bookList"></section>
 
-    <script>
+    <!--<script>
         // testing
 
         let bookData = {
@@ -132,7 +132,7 @@
             book2.createBook("bookList", bookData);
         };
 
-    </script>
+    </script>-->
 
     <script>
 
@@ -147,6 +147,14 @@
 
                 let array = apiObject.getData()
                 console.log(array)        
+
+
+                let arrayBook = Array();
+
+                for (x = 0; x < array.length; x++){
+                    arrayBook[x] = new Book();
+                    arrayBook[x].createBook("bookList", array[x]);
+                }
 
 
             }    
