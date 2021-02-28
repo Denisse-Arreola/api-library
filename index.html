@@ -84,8 +84,9 @@
                 txtSearch = document.getElementById('txtSearch')
                 
                 apiObject.searchBooks(txtSearch.value)
-                console.log(apiObject.getData())        
-                //console.log(event) 
+                let array = apiObject.getData()
+                console.log(array)        
+
             }    
         )
         

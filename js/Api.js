@@ -88,21 +88,31 @@ class Api {
 
     connect(url){
 
-        //Arreglo temporal
-        let temp = Array()
+        //Para el caso de una llamada de datos a una API
+        //los datos devueltos por la API pueden, o no, existir
+        //y en dado caso el traslado de datos se basa a una relación
+        //asíncrona. Dicho esto, la manera en la que se reciben los datos
+        // es en base a una promesa.
 
-        // Se genera la conexión.
+        const send = async () => {
+        
+            //let elements = []
 
-        fetch(url).
-        then(res => res.json()).
-        then(data => data.map(
-                // Se genera un traslado de los datos obtenidos
-                // a el arreglo temporal.
-                element => temp.push(element)
-            )
-        )
+            const response = await fetch(url);
+            const data = await response.json();
+            //elements = data;
+        
+            return data;
+        }
 
-        this.setData(temp)
+        (
+            async () => {
+                this.setData(await send())
+            }
+        )()
+
+        // Accedemos a la promesa declarada, cualquiera de los dos 
+        //casos será retornado. 
 
     }
 
