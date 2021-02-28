@@ -4,6 +4,7 @@
     font-size: 1.125rem;
     font-weight: 300;
     line-height: 1.4;
+    background-color: #EEEEEE;
 }
 
 header {
@@ -87,8 +88,9 @@ header {
 
 .container {
     width: 90%;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
+    background-color: rgba(255,255,255,0);
 }
 
 .container-flex {
@@ -137,8 +139,9 @@ header {
 }
 
 .most-relevant {
-    background-color: #E0E0E0;
+    background-color: #EEEEEE;
     padding: 0.5rem 0;
+    border-bottom: 1px solid #9E9E9E;
 }
 
 .most-relevant h3{
@@ -149,13 +152,56 @@ header {
 }
 
 .list-books {
-    padding: 1rem 0;
+    background-color: #EEEEEE;
+    padding: 2rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
 }
 
-.element{
-    display:flex;
+
+.book-element {
+    /*background-color: #F5F5F5;*/
+    background-color: white;
+    padding: 1rem;
+    display: flex;
     justify-content: space-between;
+    font-family: 'Ubuntu',sans-serif;
+    font-weight: 300;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 1px #BDBDBD;
 }
 
+.book-element img{
+    width:30%;
+}
 
+.book-element section{
+    padding: 0 0 0 1rem;
+}
+
+.book-element h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 1.6rem;
+    color: #009474;
+}
+
+/*.book-element h2:hover {
+    color: #00563a;
+}*/
+
+.book-element h3 {
+    padding: 0;
+    margin: 0.2rem 0;
+    font-size: 1rem;
+    color: #616161;
+}
+
+.book-element article {
+    padding: 1rem 0;
+    margin: 0.2rem 0;
+    font-size: 0.9rem;
+    color: #424242;
+}
 

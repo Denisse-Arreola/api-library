@@ -16,7 +16,7 @@
 
 </head>
 
-<body>
+<body onload="firstLoad()">
     <section class="site-title-bar">
         <section class="container container-flex">
             <h1>Tecno Library</h1>
@@ -58,6 +58,81 @@
     </section>
 
     <section class="list-books container" id="bookList"></section>
+
+    <script>
+        // testing
+
+        let bookData = {
+            "ID": "589",
+            "title": "Diseño Ágil con TDD",
+            "author": "Carlos Blé Jurados y autores",
+            "content": "¿Dedicas una gran parte de tu tiempo de desarrollo a resolver incidencias de aplicaciones en producción?, ¿te enfrentas a sesiones de depuración interminables para encontrar la raíz de un problema?, ¿te extenúa descubrir innumerables fallos cada vez que introduces nuevas características a funcionalidades ya existentes?. Si respondes afirmativamente estas cuestiones y quieres promover el cambio, en este libro encontrarás la clave. TDD es una técnica de desarrollo que se lleva aplicando durante años con gran éxito en lugares como EEUU y Reino Unido, sin embargo, la ausencia de información en español sobre la misma ha supuesto un freno para su difusión en los países hispano-parlantes. El objetivo de este libro es poner solución a este dilema y ofrecer una referencia completa, tanto teórica como práctica, que permita al lector iniciarse en su comprensión y aplicación. A estas alturas sabemos que aprender nuevos lenguajes o frameworks incrementa nuestra productividad a corto plazo, pero los problemas más graves a los que nos enfrentamos siguen sin solución. TDD propone una nueva forma de afrontar los desarrollos atacando estas dificultades de frente y permitiendo entregar software más robusto y fiable. Con TDD, nuestro rendimiento a largo plazo sí se ve beneficiado, no olvidemos que uno de los factores con más influencia en la productividad de hoy es la calidad del código escrito ayer. Diseño Ágil con TDD nos enseñará a: <ul> <li>Escribir tests que aumenten la fiabilidad del código.</li> <li>Escribir tests de aceptación que nos ayudarán a centrarnos, específicamente, en el problema a resolver.</li> <li>Mejorar nuestros diseños para hacerlos más simples y flexibles.</li> <li>Escribir código fácil de mantener. Con TDD, los test son documentación viva y actualizada de nuestro código, la mejor documentación posible.</li> <li>Encajar TDD dentro del paradigma ágil y relacionarlo con otras técnicas como la integración continua.</li> </ul>",
+            "content_short": "¿Dedicas una gran parte de tu tiempo de desarrollo a resolver incidencias de aplicaciones en producción?, ¿te enfrentas a sesiones de depuración interminables para encontrar la raíz de un problema?, ...",
+            "publisher": "www.iExpertos.com",
+            "publisher_date": "2010",
+            "pages": "309",
+            "language": "spanish",
+            "url_details": "https://www.etnassoft.com/biblioteca/diseno-agil-con-tdd/",
+            "url_download": "https://openlibra.com/book/diseno-agil-con-tdd",
+            "cover": "http://collection.openlibra.com.s3.amazonaws.com/covers/2011/04/disenoAgilConTDD.jpg",
+            "thumbnail": "http://collection.openlibra.com.s3.amazonaws.com/covers/2011/04/disenoAgilConTDD-110x153.jpg",
+            "num_comments": "0",
+            "categories": [
+                {
+                    "category_id": 222,
+                    "name": "Java",
+                    "nicename": "programacion_java"
+                },
+                {
+                    "category_id": 218,
+                    "name": "Metodologías Ágiles",
+                    "nicename": "metodologias_agiles"
+                },
+                {
+                    "category_id": 220,
+                    "name": "Programación",
+                    "nicename": "libros_programacion"
+                },
+                {
+                    "category_id": 219,
+                    "name": "TDD",
+                    "nicename": "tdd_metodologias_agiles"
+                }
+            ],
+            "tags": [
+                {
+                    "tag_id": 290,
+                    "name": "agil",
+                    "nicename": "agil"
+                },
+                {
+                    "tag_id": 97,
+                    "name": "java",
+                    "nicename": "java"
+                },
+                {
+                    "tag_id": 103,
+                    "name": "tdd",
+                    "nicename": "tdd"
+                },
+                {
+                    "tag_id": 104,
+                    "name": "tests",
+                    "nicename": "tests"
+                }
+            ]
+        };
+
+
+        function firstLoad() {
+            let book = new Book();
+            book.createBook("bookList", bookData);
+
+            let book2 = new Book();
+            book2.createBook("bookList", bookData);
+        };
+
+    </script>
 
     <script>
 
