@@ -1,1 +1,93 @@
-﻿
+﻿@media (max-width: 1200px){
+    .container-flex {
+        flex-direction: column;
+
+    }
+    .list-books {
+        display: flex;
+        flex-direction: column;
+    }    
+
+    .site-title-bar, header{
+        text-align: center;
+        position: unset;
+        /* align-content: center; */
+    }
+
+    .login-section {
+        margin: 0 auto;
+        background-color: unset;
+    }
+
+    .login-section:hover{
+        background-color: rgba(0, 0, 0,0);
+    
+    }
+
+    .site-search {
+        padding: 0;
+    }
+
+    .most-relevant {
+        text-align: center;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+
+    .book-element img{
+        width:200px;
+    }
+
+    
+}
+
+
+@media (max-width: 1200px) and ( orientation : portrait ){
+    .container-flex {
+        flex-direction: column;
+
+    }
+    .list-books {
+        display: flex;
+        flex-direction: column;
+    }    
+
+    .site-title-bar, header{
+        text-align: center;
+        position: unset;
+        /* align-content: center; */
+    }
+
+    .login-section {
+        margin: 0 auto;
+        background-color: unset;
+    }
+
+
+    .login-section:hover{
+        background-color: rgba(0, 0, 0,0);
+    
+    }
+
+
+    .site-search {
+        padding: 0;
+    }
+
+    .most-relevant {
+        text-align: center;
+    }
+
+
+    .container {
+        width: 90%;
+    }
+
+    .book-element img{
+        width:200px;
+    }
+    
+}

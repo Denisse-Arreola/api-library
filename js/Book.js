@@ -17,9 +17,9 @@ class Book {
         //console.log(json);
 
         if (typeof json !== 'undefined') {
-            this.title.textContent = json.title;
-            this.author.textContent = json.author;
-            this.description.textContent = json.content_short;
+            this.title.innerHTML = json.title;
+            this.author.innerHTML = json.author;
+            this.description.innerHTML = json.content_short
             this.cover.src = json.cover;
 
             let data = document.createElement("section");
@@ -32,7 +32,7 @@ class Book {
             book.appendChild(data);
 
         } else {
-            console.log("No se encontr� formato json");
+            console.log("No se encontró formato json");
         }
 
 
@@ -42,10 +42,10 @@ class Book {
             if (parent_ != null) {
                 parent_.appendChild(book);
             } else {
-                console.log("La secci�n anexada no existe");
+                console.log("La sección anexada no existe");
             }
         } else {
-            console.log("No se recibio una seccion para el libro");
+            console.log("No se recibió una sección para el libro");
         }
     }
 
