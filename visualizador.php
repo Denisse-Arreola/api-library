@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Visualizador</title>
-    <link rel="stylesheet" href="visualizador.css">
+    <link rel="stylesheet" href="/css/visualizador.css">
 </head>
 <body>
 
