@@ -8,17 +8,20 @@
     <link rel="stylesheet" href="css/responsive.css" type="text/css">
     <meta meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="js/Api.js" type="module"  ></script>
     <script src="js/Book.js" type="module" ></script>
     <script src="js/Fetch.js" type="module" ></script>
+    <script src="js/Icons.js" crossorigin="anonymous"></script>
+
     <!--<link rel="shortcut icon" href="./img/Loto_icon.png">-->
 
     <title>Biblioteca</title>
 
 </head>
 
-<body onload="firstLoad()">
+<body>
     <section class="site-title-bar">
         <section class="container container-flex">
             <h1>Tecno Library</h1>
@@ -36,6 +39,10 @@
                     <a href="#">Registrate</a>
                 </article>
             </article>
+            <!--Sección oculta unicamente para celular-->
+            <section class="login-section-responsive">
+                <i class="fas fa-user" id="user-icon" style="font-size:24px;"></i>
+            </section>
         </section>
     </section>
 
@@ -47,7 +54,7 @@
                 <p>Algún comentario antes del buscador</p>
                 <article class="search-input-button">
                     <input id="txtSearch" type="text" placeholder="Título, autor o palabra clave" />
-                    <button id="btnSearch">Buscar</button>
+                    <button id="btnSearch" onclick="connect()">Buscar</button>
                 </article>
             </section>
         </section>
@@ -61,28 +68,41 @@
 
     <section class="list-books container" id="bookList"></section>
 
-    <script type="module">
 
+    <script type="module">
         import Api from './js/Api.js'
         import Fetch from './js/Fetch.js'    
 
-        document.getElementById('btnSearch').
-        addEventListener('click', 
-            event => {
-                let txtSearch = document.getElementById('txtSearch')
+        // SCRIPT PARA LOS ADD-EVENT-LISTENER
+        let barraBusqueda = document.getElementById("txtSearch");
+
+        barraBusqueda.addEventListener("keyup", (event) => {
+            if (event.keyCode === 13 ) {
+                connect();
                 
-                
+            }
+        })
+      
+
+        connect = () => {
+
+            if (barraBusqueda.value != "") {
                 let api = new Api()
-                api.searchBooks(txtSearch.value)
+                api.searchBooks(barraBusqueda.value)
 
                 let url = api.getUrl()
                 Fetch(url, "bookList") //Función que viene de.; ./js/Fetch.js
+            } else {
+                console.log("Ingresa un valor")
+            }
 
-            }    
-        )
-        
+            
+        }
 
-    </script> 
+      
+
+
+    </script>
 
     <script>
          /* Inicio de sesion  (Leer valores) */
