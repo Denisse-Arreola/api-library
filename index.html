@@ -8,9 +8,13 @@
     <link rel="stylesheet" href="css/responsive.css" type="text/css">
     <meta meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="js/Api.js" type="module"  ></script>
+    <script src="js/Book.js" type="module" ></script>
+    <script src="js/Fetch.js" type="module" ></script>
     <script src="js/Icons.js" crossorigin="anonymous"></script>
-    <script src="js/Api.js"  ></script>
-    <script src="js/Book.js"  ></script>
+
     <!--<link rel="shortcut icon" href="./img/Loto_icon.png">-->
 
     <title>Biblioteca</title>
@@ -50,7 +54,7 @@
                 <p>Algún comentario antes del buscador</p>
                 <article class="search-input-button">
                     <input id="txtSearch" type="text" placeholder="Título, autor o palabra clave" />
-                    <button id="btnSearch">Buscar</button>
+                    <button id="btnSearch" onclick="connect()">Buscar</button>
                 </article>
             </section>
         </section>
@@ -64,80 +68,51 @@
 
     <section class="list-books container" id="bookList"></section>
 
-    <script>
+
+    <script type="module">
+        import Api from './js/Api.js'
+        import Fetch from './js/Fetch.js'    
+
         // SCRIPT PARA LOS ADD-EVENT-LISTENER
-        var activarBusqueda = document.getElementById("txtSearch");
-        activarBusqueda.addEventListener("keyup", (event) => {
-            if (event.keyCode === 13) {
+        let barraBusqueda = document.getElementById("txtSearch");
 
-                txtSearch = document.getElementById('txtSearch')
-
-                apiObject.searchBooks(txtSearch.value)
-
-                let array = apiObject.getData()
-                console.log(array)
-
-
-                let arrayBook = Array();
-
-                for (x = 0; x < array.length; x++) {
-                    arrayBook[x] = new Book();
-                    arrayBook[x].createBook("bookList", array[x]);
-                }
+        barraBusqueda.addEventListener("keyup", (event) => {
+            if (event.keyCode === 13 ) {
+                connect();
+                
             }
         })
+      
 
-        var actBarraBusqueda = document.getElementById("search-icon");
-        actBarraBusqueda.addEventListener('click', event => {
-            if (screen.width < 680) {
-                activarBusqueda.style.display = "block";
+        const connect = () => {
+
+            if (barraBusqueda.value != "") {
+
+                let api = new Api()
+                api.searchBooks(barraBusqueda.value)
+
+                let url = api.getUrl()
+                Fetch(url, "bookList") //Función que viene de.; ./js/Fetch.js
+            } else {
+                console.log("Ingresa un valor")
             }
-        })
+
+            
+        }
+
+      
 
 
     </script>
 
     <script>
-
-        apiObject = new Api()        
-
-        document.getElementById('btnSearch').
-        addEventListener('click', 
-            event => {
-                txtSearch = document.getElementById('txtSearch')
-                
-                apiObject.searchBooks(txtSearch.value)
-
-                let array = apiObject.getData()
-                console.log(array)        
-
-
-                let arrayBook = Array();
-
-                for (x = 0; x < array.length; x++){
-                    arrayBook[x] = new Book();
-                    arrayBook[x].createBook("bookList", array[x]);
-                }
-
-
-            }    
-        )
-        
-
-    </script> 
-
-    <script>
          /* Inicio de sesion  (Leer valores) */
 
             document.getElementById("btnlogin").addEventListener("click", event => {
-            console.log("HOLAAAAA")
 
             let myEmail = document.getElementById("txtemail").value
             let myPassword = document.getElementById("txtpassword").value 
 
-                
-               // console.log(email)
-               // console.log(password)
             let params = new URLSearchParams(
                 {
                     email:myEmail,
