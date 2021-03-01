@@ -54,7 +54,7 @@
                 <p>Algún comentario antes del buscador</p>
                 <article class="search-input-button">
                     <input id="txtSearch" type="text" placeholder="Título, autor o palabra clave" />
-                    <button id="btnSearch" onclick="connect()">Buscar</button>
+                    <button id="btnSearch" >Buscar</button>
                 </article>
             </section>
         </section>
@@ -82,6 +82,9 @@
                 
             }
         })
+
+        document.getElementById("btnSearch").
+        addEventListener("click", event => connect())
       
 
         const connect = () => {
