@@ -9,8 +9,9 @@
     <meta meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script src="js/Api.js"  ></script>
-    <script src="js/Book.js"  ></script>
+    <script src="js/Api.js" type="module"  ></script>
+    <script src="js/Book.js" type="module" ></script>
+    <script src="js/Fetch.js" type="module" ></script>
     <!--<link rel="shortcut icon" href="./img/Loto_icon.png">-->
 
     <title>Biblioteca</title>
@@ -60,28 +61,22 @@
 
     <section class="list-books container" id="bookList"></section>
 
-    <script>
+    <script type="module">
 
-        apiObject = new Api()        
+        import Api from './js/Api.js'
+        import Fetch from './js/Fetch.js'    
 
         document.getElementById('btnSearch').
         addEventListener('click', 
             event => {
-                txtSearch = document.getElementById('txtSearch')
+                let txtSearch = document.getElementById('txtSearch')
                 
-                apiObject.searchBooks(txtSearch.value)
+                
+                let api = new Api()
+                api.searchBooks(txtSearch.value)
 
-                let array = apiObject.getData()
-                console.log(array)        
-
-
-                let arrayBook = Array();
-
-                for (x = 0; x < array.length; x++){
-                    arrayBook[x] = new Book();
-                    arrayBook[x].createBook("bookList", array[x]);
-                }
-
+                let url = api.getUrl()
+                Fetch(url, "bookList") //Función que viene de.; ./js/Fetch.js
 
             }    
         )
@@ -93,14 +88,10 @@
          /* Inicio de sesion  (Leer valores) */
 
             document.getElementById("btnlogin").addEventListener("click", event => {
-            console.log("HOLAAAAA")
 
             let myEmail = document.getElementById("txtemail").value
             let myPassword = document.getElementById("txtpassword").value 
 
-                
-               // console.log(email)
-               // console.log(password)
             let params = new URLSearchParams(
                 {
                     email:myEmail,

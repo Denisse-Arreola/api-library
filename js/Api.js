@@ -1,3 +1,4 @@
+
 class Api {
     
     constructor(){
@@ -9,7 +10,6 @@ class Api {
 
         this.category = 'all'
         this.numItems = '10'
-        this.data = Array()
 
        
         console.log('Objeto conexión a Api iniciado')
@@ -19,9 +19,11 @@ class Api {
 
     setCategory = category => {this.category = category}
     setNumItems = numItems => {this.numItems = numItems}
-    setData = data => {this.data = data}
+    setUrl = params => { this.url += params }
+
 
     getData = () => this.data
+    getUrl = () => this.url 
 
     // searchBooks( ´Palabra a búsqueda´ ) :
     // Esta función es un prototipo básico de Búsqueda 
@@ -38,9 +40,9 @@ class Api {
         //               serán incluídos en el URL.
 
         console.log('Busqueda "Listar Libros" realizada URL generado...')
-        console.log(this.url + params)
-
-        this.connect(this.url + params) // Llamada a la función connect()
+        
+        this.setUrl(params)
+        console.log(this.getUrl())
 
     }
 
@@ -56,9 +58,9 @@ class Api {
         //              serán incluídos en el URL.
 
         console.log('Busqueda "Listar categorías" realizada URL generado...')
-        console.log(this.url + params)
 
-        this.connect(this.url + params) // Llamada a la función connect()
+        this.setUrl(params) 
+        console.log(this.getUrl())
     }
 
     // getBook(´ID a buscar´) :
@@ -74,58 +76,12 @@ class Api {
         //              serán incluídos en el URL.
 
         console.log('Busqueda "Listar categorías" realizada URL generado...')
-        console.log(this.url + params)
 
 
-        this.connect(this.url + params) // Llamada a la función connect()
-
-    }
-
-
-    // connect(´URL de búsqueda´) :
-    // Esta función se encarga de conectar con los distintos URL
-    // creados.
-
-    connect(url){
-
-        //Para el caso de una llamada de datos a una API
-        //los datos devueltos por la API pueden, o no, existir
-        //y en dado caso el traslado de datos se basa a una relación
-        //asíncrona. Dicho esto, la manera en la que se reciben los datos
-        // es en base a una promesa.
-
-        const send = async () => {
-        
-            //let elements = []
-
-            const response = await fetch(url);
-            const data = await response.json();
-            //elements = data;
-        
-            return data;
-        }
-
-        (
-            async () => {
-                this.setData(await send())
-            }
-        )()
-
-        // Accedemos a la promesa declarada, cualquiera de los dos 
-        //casos será retornado. 
-
+        this.setUrl(params) 
+        console.log(this.getUrl())
     }
 
 }
 
-// obj = new Api()
-// obj.getCategories()
-
-
-// obj.setCategory('Matematicas')
-// obj.setNumItems('15')
-// obj.searchBooks('Calculo')
-
-// obj.getBook('17036')
-
-// console.log(obj.getData());
+export default Api;
