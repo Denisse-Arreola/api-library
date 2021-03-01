@@ -33,6 +33,10 @@ header {
     text-align:center;
 }
 
+.login-section-responsive{
+    display:none;
+}
+
 .input-text {
     height: 24px;
     margin-left: 0.8rem;
@@ -40,7 +44,7 @@ header {
     border: none;
     outline: none;
     color: #EEEEEE;
-    border-bottom: 1px #E0E0E0 solid ;
+    border-bottom: 1px #E0E0E0 solid;
 }
 
 .input-text::placeholder {
