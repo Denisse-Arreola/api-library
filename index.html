@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/responsive.css" type="text/css">
     <meta meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="js/Icons.js" crossorigin="anonymous"></script>
     <script src="js/Api.js"  ></script>
     <script src="js/Book.js"  ></script>
     <!--<link rel="shortcut icon" href="./img/Loto_icon.png">-->
@@ -17,7 +17,7 @@
 
 </head>
 
-<body onload="firstLoad()">
+<body>
     <section class="site-title-bar">
         <section class="container container-flex">
             <h1>Tecno Library</h1>
@@ -35,6 +35,10 @@
                     <a href="#">Registrate</a>
                 </article>
             </article>
+            <!--Sección oculta unicamente para celular-->
+            <section class="login-section-responsive">
+                <i class="fas fa-user" id="user-icon" style="font-size:24px;"></i>
+            </section>
         </section>
     </section>
 
@@ -59,6 +63,39 @@
     </section>
 
     <section class="list-books container" id="bookList"></section>
+
+    <script>
+        // SCRIPT PARA LOS ADD-EVENT-LISTENER
+        var activarBusqueda = document.getElementById("txtSearch");
+        activarBusqueda.addEventListener("keyup", (event) => {
+            if (event.keyCode === 13) {
+
+                txtSearch = document.getElementById('txtSearch')
+
+                apiObject.searchBooks(txtSearch.value)
+
+                let array = apiObject.getData()
+                console.log(array)
+
+
+                let arrayBook = Array();
+
+                for (x = 0; x < array.length; x++) {
+                    arrayBook[x] = new Book();
+                    arrayBook[x].createBook("bookList", array[x]);
+                }
+            }
+        })
+
+        var actBarraBusqueda = document.getElementById("search-icon");
+        actBarraBusqueda.addEventListener('click', event => {
+            if (screen.width < 680) {
+                activarBusqueda.style.display = "block";
+            }
+        })
+
+
+    </script>
 
     <script>
 
