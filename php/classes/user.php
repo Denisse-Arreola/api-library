@@ -1,6 +1,6 @@
 <?php
 
-require_once("../mysql/connection.php");
+require_once("./mysql/connection.php");
 
 class usuario{
 
@@ -57,6 +57,7 @@ class usuario{
             $conn->close();
         }
 
+        //Constructor para verificar una cuenta de usuario
         if(func_num_args() == 2){
             $this->id = 0;
             $this->firstname = "";
@@ -67,7 +68,15 @@ class usuario{
             
         }
 
-        
+        //Constructor para llenar atributos y poder insertar a un usuario
+        if (func_num_args() == 4){
+            $this->id = 0;
+            $this->firstname = $args[0];
+            $this->lastname = $args[1];
+            $this->email = $args[2];
+            $this->password = $args[3];
+            $this->bookList= array();
+        }
 
     }
 
@@ -95,6 +104,7 @@ class usuario{
         $conn->close();
     }
 
+    //Funcion para verificar al usuario antes del inicio de sesión
     public function verifyUser(){
         $sql = "select * from vw_user where email=? and paswd=?;";
         $conn = mysqlConnection::getConnection();
@@ -129,6 +139,45 @@ class usuario{
 
             mysqli_stmt_close($command);
             $conn->close();
+    }
+
+    //Funcion para registrar un nuevo usuario
+    public function newUser(){
+        
+        $conn = mysqlConnection::getConnection();
+        $conn->query("set @num=0;");
+
+        //EXAMPLE
+        //                 FIRSTNAME  LASTNAME  EMAIL          PASSWORD
+        //call sp_insert_user ("Luis","Carlos","lcarlo@gmail.com","123456", @num);
+        $sql = "call sp_insert_user (?,?,?,?, @num);";
+        $command = $conn->prepare($sql);
+        $command->bind_param('ssss',
+                            $this->firstname,
+                            $this->lastname,
+                            $this->email,
+                            $this->password);
+		
+		$command->execute();
+
+        if($command->error !=""){
+            return json_encode(array("error"=>$command->error, "res"=>false));
+        }else{
+            $num = $conn->query("select @num as num;"); 
+            $idU = $num->fetch_assoc();
+
+            if($idU != 0){
+                $this->id = array_pop($idU);
+                $this->bookList = array(); 
+                return self::getJSON();
+            }else{
+                return json_encode(array("error"=>"Este usuario ya existe", "res"=>false));
+            }
+        }        
+		
+
+        mysqli_stmt_close($command);
+        $conn->close();
     }
 
     public function getJSON(){

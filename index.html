@@ -88,10 +88,10 @@
 
     </section>
 
-
+    <!--SECCION EN LA QUE SE MOSTRARA LA LISTA DE LIBROS TRAIDOS DE LA API-->
     <section class="list-books container" id="bookList"></section>
 
-
+    
 
     <script type="module">
         import Api from './js/Api.js'
@@ -147,7 +147,7 @@
                 }
             ).toString();
 
-            fetch("http://localhost/api-library/php/classes/testing.php?"+params).
+            fetch("http://localhost/api-library/php/api.php?"+params).
             then(
                 res=>res.json()
             ).then(
