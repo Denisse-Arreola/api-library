@@ -4,10 +4,11 @@
 <head>
     <!--<script src="./js/error_dialog.js" charset="ISO-8859-1"></script>-->
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="css/general.css" type="text/css">
-    <link rel="stylesheet" href="css/responsive.css" type="text/css">
     <meta meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/general.css" type="text/css">
+    <link rel="stylesheet" href="css/responsive.css" type="text/css">
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="js/Api.js" type="module"  ></script>
@@ -23,50 +24,73 @@
 
 <body>
     <section class="site-title-bar">
+
         <section class="container container-flex">
+
             <h1>Tecno Library</h1>
+
             <article class="login-section">
+
                 <article class="input user">
                     <i class="fas fa-user" style="font-size:24px;"></i>
                     <input class="input-text" id="txtemail" type="text" placeholder="Correo" />
                 </article>
+
                 <article class="input pass">
                     <i class="fas fa-lock" style="font-size:24px;"></i>
                     <input class="input-text" id="txtpassword" type="password" placeholder="Contraseña" />
                 </article>
+
                 <article>
                     <button id="btnlogin">Iniciar</button>
                     <a href="#">Registrate</a>
                 </article>
+
             </article>
+
             <!--Sección oculta unicamente para celular-->
             <section class="login-section-responsive">
                 <i class="fas fa-user" id="user-icon" style="font-size:24px;"></i>
             </section>
+
         </section>
+
     </section>
 
+
     <header>
+
         <section class="container site-search">
+
             <section class="site-search-background">
+
                 <h1>Probando colores blancos</h1>
                 <h2>Algún eslogan</h2>
                 <p>Algún comentario antes del buscador</p>
+
                 <article class="search-input-button">
                     <input id="txtSearch" type="text" placeholder="Título, autor o palabra clave" />
                     <button id="btnSearch" >Buscar</button>
                 </article>
+
             </section>
+
         </section>
+
     </header>
 
+
     <section class="most-relevant">
+
         <section class="container">
             <h3 id="busqueda">Más destacados</h3>
         </section>
+
     </section>
 
+
     <section class="list-books container" id="bookList"></section>
+
 
 
     <script type="module">

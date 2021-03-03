@@ -16,21 +16,22 @@ class usuario{
     public function __construct(){
         $args=func_get_args();
 
-        if (func_num_args()==0){
-            $this->id=0;
-            $this->firstname="";
-            $this->lastname="";
-            $this->email="";
-            $this->password="";
-            $this->bookList=array();
+        if (func_num_args() == 0){
+            $this->id = 0;
+            $this->firstname = "";
+            $this->lastname = "";
+            $this->email = "";
+            $this->password = "";
+            $this->bookList= array();
         }
 
         //Constructor de busqueda por medio del id del usuario
-        if(func_num_args()==1){
-            $sql= "select * from vw_user where id= ?;";
-            $conn=mysqlConnection::getConnection();
-            $command=$conn->prepare($sql);
+        if(func_num_args() == 1){
+            $sql = "select * from vw_user where id= ?;";
+            $conn = mysqlConnection::getConnection();
+            $command = $conn->prepare($sql);
             $command->bind_param('i', $args[0]);
+
             $command->bind_result(
                 $id_,
                 $firstname_,
@@ -40,27 +41,29 @@ class usuario{
             );
 
             $command->execute();
+
             if ($command->fetch()){
-                $this->id=$id_;
-                $this->firstname=$firstname_;
-                $this->lastname=$lastname_;
-                $this->email=$email_;
-                $this->password=$password_;
-                $this->bookList=self::getList($id_);               
+                $this->id = $id_;
+                $this->firstname = $firstname_;
+                $this->lastname = $lastname_;
+                $this->email = $email_;
+                $this->password = $password_;
+                $this->bookList = self::getList($id_);               
 
                 json_decode(self::getJSON());
             }
+
             mysqli_stmt_close($command);
             $conn->close();
         }
 
-        if(func_num_args()==2){
-            $this->id=0;
-            $this->firstname="";
-            $this->lastname="";
-            $this->email=$args[0];
-            $this->password=$args[1];
-            $this->bookList=array();
+        if(func_num_args() == 2){
+            $this->id = 0;
+            $this->firstname = "";
+            $this->lastname = "";
+            $this->email = $args[0];
+            $this->password = $args[1];
+            $this->bookList = array();
             
         }
 
@@ -68,21 +71,25 @@ class usuario{
 
     }
 
-    //Funci�n para obtener el arreglo de libros del usuario
+    //Funcion para obtener el arreglo de libros del usuario
     public function getList($user){
         $sql = "select * from vw_user_list where id=?;";
-        $conn=mysqlConnection::getConnection();
-        $command=$conn->prepare($sql);
+        $conn = mysqlConnection::getConnection();
+        $command = $conn->prepare($sql);
         $command->bind_param('i', $user);
+
         $command->bind_result(
             $id_,
             $book_
         );
         $command->execute();
         $lista = array();
+
         while ($command->fetch()){
+
             $lista[]=$book_;
         }
+
         return $lista;
         mysqli_stmt_close($command);
         $conn->close();
@@ -90,9 +97,10 @@ class usuario{
 
     public function verifyUser(){
         $sql = "select * from vw_user where email=? and paswd=?;";
-        $conn=mysqlConnection::getConnection();
-        $command=$conn->prepare($sql);
+        $conn = mysqlConnection::getConnection();
+        $command = $conn->prepare($sql);
         $command->bind_param('ss', $this->email, $this->password);
+
         $command->bind_result(
                 $id_,
                 $firstname_,
@@ -100,22 +108,24 @@ class usuario{
                 $email_,
                 $password_
             );
-            $command->execute();
-            if ($command->fetch()){
 
-                $this->id=$id_;
-                $this->firstname=$firstname_;
-                $this->lastname=$lastname_;
-                $this->email=$email_;
-                $this->password=$password_;
-                $this->bookList=self::getList($id_);               
+        $command->execute();
+        if ($command->fetch()){
 
-                return self::getJSON();
+            $this->id = $id_;
+            $this->firstname = $firstname_;
+            $this->lastname = $lastname_;
+            $this->email = $email_;
+            $this->password = $password_;
+            $this->bookList = self::getList($id_);               
 
-            }else{
-                return json_encode(array("error"=>"No encontrado","res"=>false));
-                die;
-            }
+            return self::getJSON();
+
+        }else{
+
+            return json_encode(array("error"=>"No encontrado", "res"=>false));
+            die;
+        }
 
             mysqli_stmt_close($command);
             $conn->close();

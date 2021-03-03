@@ -17,6 +17,7 @@ class Book {
         //console.log(json);
 
         if (typeof json !== 'undefined') {
+
             this.title.innerHTML = json.title;
             this.author.innerHTML = json.author;
             this.description.innerHTML = json.content_short
