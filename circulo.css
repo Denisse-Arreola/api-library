@@ -2,7 +2,7 @@
     width: 70px;
     height: 70px;
     border: 10px solid #eee;
-    border-top: 10px solid #666;
+    border-top: 10px solid rgb(33, 224, 151);
     border-radius: 50%;
     animation-name: girar;
     animation-duration: 2s;
