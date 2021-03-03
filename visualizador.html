@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html Lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/Api.js" type="module"></script>
+    <title>Visualizador</title>
+    <link rel="stylesheet" href="css/visualizador.css">
+</head>
+<body>
+
+ <section>
+    <h1>Visualizar el pdf hahaha</h1>
+
+    <iframe id="pdfTest" ></iframe>
+
+    <!-- <iframe src='https://openlibra.com/es/book/download/diseno-agil-con-tdd' ></iframe> -->
+ </section>
+
+    <script type="module">
+
+        import Api from './js/Api.js'
+        //Se importa la clase API
+
+        const apiObj = new Api()
+        // Creando un objeto
+
+        apiObj.getBook(589)
+        // Creando URL para Búsqueda
+
+        let i_frame = document.getElementById('pdfTest')
+
+        fetch(apiObj.getUrl()).// Se conecta a la URL Creada usando 
+        // la función getUrl()
+        then(res => res.json()).
+        then(data => {
+
+            data.map(
+                element => {
+                    console.log(element.url_download)
+                    window.open(element.url_download)
+           
+
+                }
+                // Se le añade la URL de descarga al
+                // i_frame referenciado. 
+            )
+            
+            //openPdf(window.frames[0])
+
+        })
+
+
+      
+    </script>
+</body>
+
+
+
+
+
+</html>
