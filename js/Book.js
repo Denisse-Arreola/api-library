@@ -10,13 +10,29 @@ class Book {
         //this.ranking = document.createElement("div");
     }
 
-    createBook(parent, json) {
+    createBook(parent, json) { 
 
         let book = document.createElement("section");
         book.className = "book-element";
+    
         //console.log(json);
 
         if (typeof json !== 'undefined') {
+
+            book.addEventListener("click", 
+                event => {
+                    //console.log('http://localhost/api-library/php/bookSpace.php?book_action=set_book&book_ID='+json.id)
+                    fetch('http://localhost/api-library/php/bookSpace.php?book_action=set_book&book_ID='+json.ID).
+                    then(res => res.json()). 
+                    then( 
+                        data => {
+                            
+                            location.href = 'http://localhost/api-library/viewBook.html'
+                        }
+                    )
+
+                }
+            )
 
             this.title.innerHTML = json.title;
             this.author.innerHTML = json.author;
