@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
     <head>
@@ -9,6 +9,7 @@
 
         <link rel="stylesheet" href="css/general.css" type="text/css">
         <link rel="stylesheet" href="css/responsive.css" type="text/css">
+        <link rel="stylesheet" href="css/dialogos.css" type="text/css">
 
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
         <script src="js/Api.js" type="module"  ></script>
@@ -23,13 +24,16 @@
     </head>
     <body>
 
+        <script type="module">
+
+            //fetch('http://localhost/api-library/php/api.php?book_action=get_book').
+            fetch('http://localhost:8080/api-library/php/api.php?book_action=get_book').
+            then(res => res.json()).
+            then(data => console.log(data))
+
+        </script>
+
     </body>
 
-    <script>
-        fetch('http://localhost/api-library/php/bookSpace.php?book_action=get_book').
-        then(res => res.json()).
-        then(data => console.log(data))
-
-
-    </script>
+    
 </html>

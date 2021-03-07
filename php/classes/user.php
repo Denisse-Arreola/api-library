@@ -148,7 +148,7 @@ class usuario{
         $conn->query("set @num=0;");
 
         //EXAMPLE
-        //                 FIRSTNAME  LASTNAME  EMAIL          PASSWORD
+        //                   FIRSTNAME LASTNAME  EMAIL            PASSWORD  ID
         //call sp_insert_user ("Luis","Carlos","lcarlo@gmail.com","123456", @num);
         $sql = "call sp_insert_user (?,?,?,?, @num);";
         $command = $conn->prepare($sql);
@@ -188,7 +188,8 @@ class usuario{
                 'apellido'=>$this->lastname,
                 'email'=>$this->email,
                 'password'=>$this->password,
-                'bookList'=>$this->bookList
+                'bookList'=>$this->bookList,
+                'res'=>true
             )
         );
     }
