@@ -11,6 +11,18 @@
         );    
     }
 
+
+    function verify_session() {
+        session_start();
+        if(empty($_SESSION)){
+				error();
+
+        }else{
+            return true;            
+        }
+
+    }
+
 if(isset($_GET['session_action'])){    
     //Verifica el inicio de sesion
     if($_GET['session_action'] == "new_session" && isset($_GET["firstname_"]) && isset($_GET["lastname_"]) && isset($_GET["email_"]) && isset($_GET["password_"])){
@@ -58,6 +70,22 @@ if(isset($_GET['session_action'])){
             );
         }
 
+    } else if ($_GET['session_action'] == "session_books") {
+
+        if (verify_session()){
+            session_start();
+            $user_data = json_decode($_SESSION["user"]);
+        
+            $user = new usuario($user_data->id);
+            $data = json_decode($user->getJSON());
+
+            $books = $data->bookList;
+
+            echo json_encode($books);
+            
+        } 
+        
+
     } else if($_GET['session_action'] == "session_destroy"){
         
         session_start();
@@ -84,7 +112,7 @@ if(isset($_GET['session_action'])){
     }
 
 
-} else if (isset($_GET['book_action'])) { // Leemos la Acción
+} else if (isset($_GET['book_action'])) { // Leemos la Acciï¿½n
 
     if ( $_GET['book_action'] == 'set_book' && isset( $_GET['book_ID'] ) ){
         // Caso: Establecer un libro global En las Cookies.
@@ -101,18 +129,14 @@ if(isset($_GET['session_action'])){
     } else if ($_GET['book_action'] == 'get_book'){
         // Caso: Extraer un libro global En las Cookies.
         
-        
         echo json_encode(Array(
                 'id' => $_COOKIE['book_ID'],
                 'status' => true
             )
         );
 
-    } 
-
-
-    else {
-        retError();
+    } else {
+        error();
     }
 
 } else{
