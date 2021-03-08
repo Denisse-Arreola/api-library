@@ -56,6 +56,21 @@ DELIMITER ;
 
 #call sp_insert_user ("Luis","Carlos","lcarlo@gmail.com","123456",@num);
 
+
+DELIMITER //
+ create procedure sp_insert_libro 
+ (
+ in ufkuser int,
+ in ubook int
+ )
+ begin 
+ insert into user_book(FK_user,book)
+ values(ufkuser,ubook);
+ end;
+ 
+ call sp_insert_libro(2,464);
+
+
 #------------ INSERT ----------------
 insert into users(name, lastName, email, password) values
 ("Denisse","Arreola","arxie.denisse@gmail.com","123456");
