@@ -22,6 +22,7 @@ if(isset($_GET['session_action'])){
 
         $user = new usuario($firstname, $lastname, $email, $password);
         echo $user->newUser();
+
     } else if($_GET['session_action'] == "start_session" && isset($_GET["email"])&&isset($_GET["password"])){
 
         $email =$_GET["email"];
@@ -56,6 +57,7 @@ if(isset($_GET['session_action'])){
                     )
             );
         }
+
     } else if($_GET['session_action'] == "session_destroy"){
         
         session_start();
@@ -72,7 +74,11 @@ if(isset($_GET['session_action'])){
             );
         }
         
-    } else{
+    }else if ($_GET['session_action'] == "add_book" && isset($_GET['book_ID'])){
+        //Tu pedacito Dani
+        
+
+    }else{
 
         error();
     }
