@@ -37,27 +37,58 @@
         <section class="book-content container" id="book-content">
             <img src="http://collection.openlibra.com.s3.amazonaws.com/covers/2011/04/disenoAgilConTDD.jpg"/>
             <section class="content">
-                <button>Agregar a mi lista</button>
-                <article>Titulo</article>
-                <article>Autor</article>
-                <article>Año</article>
-                <article>Lenguaje</article>
-                <article>Paginas</article>
-                <section>Contenido</section>
-                <a>Descarga</a>
+                <article></article>
+                <article></article>
+                <article></article>
+                <article></article>
+                <article></article>
+                <section></section>
+
+                <section class="book-content-buttons">
+                    <button>Agregar a mi lista</button>
+                    <button>Descarga</button>
+                </section>
             </section>
             
         </section>
 
-
+        
         <script type="module">
+            import Api from './js/Api.js'
+            import Fetch from './js/Fetch.js'
 
-            fetch('http://localhost/api-library/php/api.php?book_action=get_book').
-            //fetch('http://localhost:8080/api-library/php/api.php?book_action=get_book').
+            //fetch('http://localhost/api-library/php/api.php?book_action=get_book').
+            fetch('http://localhost:8080/api-library/php/api.php?book_action=get_book').
             then(res => res.json()).
-            then(data => console.log(data))
+                then(data => {
+
+                    console.log(data);
+                    extract_book(data);
+
+                })
+
+
+            //Extraer datos del libro
+            function extract_book(json) {
+
+                let api = new Api();
+                api.getBook(json.id);
+                //console.log(json.id);
+                let url = api.getUrl();
+                fetch(url).
+                    then(res => res.json()).
+                    then(data => extract_data(data[0])).
+                    catch(error => console.log(error));
+
+            }
+
+            function extract_data(json) {
+                console.log(json);
+
+            }
 
         </script>
+
 
     </body>
 

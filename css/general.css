@@ -222,9 +222,26 @@ header {
     width: 28%;
 }
 
-.content{
-    width: 70%;
+.content {
+    width: 60%;
+    background-color: white;
+    padding: 2rem;
 }
 
-.content button{
+.book-content-buttons{
+    display: flex;
+    justify-content: space-around;
+}
+
+.book-content-buttons button{
+    background-color: #009373;
+    width: 35%;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    outline:none;
+    text-align:center;
+    padding: 1rem;
+    font-size: 1rem;
 }

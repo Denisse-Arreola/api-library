@@ -192,8 +192,8 @@
                     }
                 ).toString();
 
-                let url = 'http://localhost/api-library/php/api.php?' + params;
-                //let url = 'http://localhost:8080/api-library/php/api.php?' + params;
+                //let url = 'http://localhost/api-library/php/api.php?' + params;
+                let url = 'http://localhost:8080/api-library/php/api.php?' + params;
                 fetch(url).
                     then(res =>
                         res.json()
@@ -249,8 +249,8 @@
                 }
             ).toString();
 
-            fetch("http://localhost/api-library/php/api.php?"+params).
-            //fetch("http://localhost:8080/api-library/php/api.php?" + params).
+            //fetch("http://localhost/api-library/php/api.php?"+params).
+            fetch("http://localhost:8080/api-library/php/api.php?" + params).
                 then(
                     res => res.json()
                 ).then(
