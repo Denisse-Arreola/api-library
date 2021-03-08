@@ -19,15 +19,41 @@
 
         <!--<link rel="shortcut icon" href="./img/Loto_icon.png">-->
 
-        <title>Biblioteca</title>
+        <title>View Book</title>
 
     </head>
     <body>
 
+        <section class="site-title-bar">
+
+            <section class="container container-flex">
+
+                <h1>Tecno Library</h1>
+
+            </section>
+
+        </section>
+
+        <section class="book-content container" id="book-content">
+            <img src="http://collection.openlibra.com.s3.amazonaws.com/covers/2011/04/disenoAgilConTDD.jpg"/>
+            <section class="content">
+                <button>Agregar a mi lista</button>
+                <article>Titulo</article>
+                <article>Autor</article>
+                <article>Año</article>
+                <article>Lenguaje</article>
+                <article>Paginas</article>
+                <section>Contenido</section>
+                <a>Descarga</a>
+            </section>
+            
+        </section>
+
+
         <script type="module">
 
-            //fetch('http://localhost/api-library/php/api.php?book_action=get_book').
-            fetch('http://localhost:8080/api-library/php/api.php?book_action=get_book').
+            fetch('http://localhost/api-library/php/api.php?book_action=get_book').
+            //fetch('http://localhost:8080/api-library/php/api.php?book_action=get_book').
             then(res => res.json()).
             then(data => console.log(data))
 

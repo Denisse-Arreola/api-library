@@ -22,8 +22,8 @@ class Book {
             book.addEventListener("click", 
                 event => {
                     //console.log('http://localhost:8080/api-library/php/api.php?book_action=get_book&book_ID='+json.ID)
-                    fetch('http://localhost/api-library/php/api.php?book_action=get_book&book_ID='+json.ID).
-                    //fetch('http://localhost:8080/api-library/php/api.php?book_action=get_book&book_ID='+json.ID).
+                    fetch('http://localhost/api-library/php/api.php?book_action=set_book&book_ID='+json.ID).
+                    //fetch('http://localhost:8080/api-library/php/api.php?book_action=set_book&book_ID='+json.ID).
                     then(res => res.json()). 
                     then( 
                         data => {
