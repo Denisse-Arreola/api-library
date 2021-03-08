@@ -140,6 +140,28 @@ class usuario{
             mysqli_stmt_close($command);
             $conn->close();
     }
+     
+    //Funcion para registrar el libro
+     public function newbook($bookid){
+        $conn = mysqlConnection::getConnection();
+        $sql = "call sp_insert_libro (?,?);";
+        $command = $conn->prepare($sql);
+        $command->bind_param('ii',
+        $this->id,
+        $bookid);
+
+        $command->execute();
+
+        if($command->error !=""){
+            return json_encode(array("error"=>$command->error, "res"=>false));
+        }else{
+            return json_decode(array("status"=>"Tu registro fue exitoso", "res"=>true));
+            } 
+            mysqli_stmt_close($command);
+            $conn->close();
+     }  
+
+     
 
     //Funcion para registrar un nuevo usuario
     public function newUser(){
@@ -159,6 +181,8 @@ class usuario{
                             $this->password);
 		
 		$command->execute();
+
+    
 
         if($command->error !=""){
             return json_encode(array("error"=>$command->error, "res"=>false));
