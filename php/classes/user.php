@@ -155,13 +155,13 @@ class usuario{
         if($command->error !=""){
             return json_encode(array("error"=>$command->error, "res"=>false));
         }else{
-            return json_decode(array("status"=>"Tu registro fue exitoso", "res"=>true));
+            return json_encode(array("status"=>"Tu registro fue exitoso", "res"=>true));
             } 
             mysqli_stmt_close($command);
             $conn->close();
      }  
 
-     
+
 
     //Funcion para registrar un nuevo usuario
     public function newUser(){
