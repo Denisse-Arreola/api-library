@@ -10,7 +10,9 @@ class Api {
 
         this.category = 'all'
         this.numItems = '10'
+        this.criteria = 'most_viewed'
 
+        this.url += "criteria="+this.criteria+"&" 
        
         console.log('Objeto conexión a Api iniciado')
     }
@@ -34,6 +36,7 @@ class Api {
     searchBooks(word){
         let params = new URLSearchParams({
             keyword : word,
+            // criteria : this.criteria,
             category : this.category,
             num_items : this.numItems
         }).toString() // Crea los parámetros de búsqueda que 
