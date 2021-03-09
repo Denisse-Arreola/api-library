@@ -78,9 +78,9 @@ insert into users(name, lastName, email, password) values
 insert into user_book(FK_user, book) values
 (1,1471),(1,589),(1,853);
 
-
+#delete from user_book where FK_user = 1 and book = 0;
 
 #------------ SELECT ----------------
 select * from vw_user where id=1;
-select * from vw_user_list where id=22;
+select * from vw_user_list where id=1;
 select * from vw_user where email = usern and paswd=passwd

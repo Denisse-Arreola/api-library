@@ -3,8 +3,9 @@
     "",
     "\\css",
     "\\js",
-    "\\php"
+    "\\php",
+    "\\php\\classes"
   ],
-  "SelectedNode": "\\css\\general.css",
+  "SelectedNode": "\\css\\responsive.css",
   "PreviewInSolutionExplorer": false
 }

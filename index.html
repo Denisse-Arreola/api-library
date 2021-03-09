@@ -24,7 +24,7 @@
 
 </head>
 
-<body onload="verify_user()">
+<body>
     <section class="site-title-bar index">
 
         <section class="container container-flex">
@@ -125,6 +125,33 @@
             <button type="submit" name="submit" id="submit">Registrar</button>
         </form>
     </dialog>
+
+    <script>
+
+        fetch("http://localhost:8080/api-library/php/api.php?session_action=get_user").
+            then(
+                res => res.json()
+            ).then(
+                data => {
+                    verify = data.res
+                    if (verify) {
+                        //console(verify);
+
+                        let login = document.getElementById('login');
+                        login.style.display = "none";
+
+                        let userIcon = document.getElementById('userIcon');
+                        userIcon.style.display = "block";
+
+                        let userName = document.getElementById('username');
+                        userName.innerHTML = "";
+                        userName.innerHTML = data.nombre + " " + data.apellido;
+               
+                    }
+                } 
+            )
+    </script>
+
 
     <script type="module">
         import Api from './js/Api.js'
@@ -352,30 +379,7 @@
 
         }
 
-        function verify_user() {
 
-            fetch("http://localhost:8080/api-library/php/api.php?session_action=get_user").
-                then(
-                    res => res.json()
-                ).then(
-                    data => {
-                        verify = data.res
-                        if (verify) {
-
-                            let login = document.getElementById('login');
-                            login.style.display = "none";
-
-                            let userIcon = document.getElementById('userIcon');
-                            userIcon.style.display = "block";
-
-                            let userName = document.getElementById('username');
-                            userName.innerHTML = "";
-                            userName.innerHTML = data.nombre + " " + data.apellido;
-               
-                        }
-                    } 
-                )
-        }
 
     </script>
 

@@ -14,7 +14,6 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="js/Api.js" type="module"  ></script>
     <script src="js/Book.js" type="module" ></script>
-    <script src="js/Fetch.js" type="module" ></script>
     <script src="js/Icons.js" crossorigin="anonymous"></script>
 
     <title>My books</title>
@@ -50,8 +49,6 @@
         
     <script type="module">
 
-        import Api from './js/Api.js'
-        import Fetch from './js/Fetch.js'
         import Book from './js/Book.js';
 
         //fetch('http://localhost/api-library/php/api.php?session_action=session_books').
@@ -59,7 +56,7 @@
             then(res => res.json()).
             then(data => {
 
-                console.log(data);
+                //console.log(data);
                 show_books(data);
             });
 

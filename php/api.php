@@ -93,10 +93,28 @@ if(isset($_GET['session_action'])){
         if (verify_session()){
            // session_start();
             $user_data = json_decode($_SESSION["user"]);
+            $count = 0;
+
+            for($x = 0; $x < count($user_data->bookList); $x = $x +1){
+                
+                if($user_data->bookList[$x] == $_GET['book_ID'] ){
+                    $count = $count + 1;
+                }    
+
+            }
+
+            if($count == 0){
+                $user = new usuario($user_data->id);
+                echo  $user->newbook($_GET['book_ID']);
+
+            } else{
+                echo json_encode(Array(
+                    'status' => 'libro existente',
+                    'res' => false
+                    )
+                );
+            }
         
-            $user = new usuario($user_data->id);
-            echo  $user->newbook($_GET['book_ID']);
-            
             
         } 
      

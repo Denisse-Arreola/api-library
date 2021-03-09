@@ -14,7 +14,6 @@
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
         <script src="js/Api.js" type="module"  ></script>
         <script src="js/Book.js" type="module" ></script>
-        <script src="js/Fetch.js" type="module" ></script>
         <script src="js/Icons.js" crossorigin="anonymous"></script>
 
         <!--<link rel="shortcut icon" href="./img/Loto_icon.png">-->
@@ -70,7 +69,6 @@
         
         <script type="module">
             import Api from './js/Api.js'
-            import Fetch from './js/Fetch.js'
            
 
             //fetch('http://localhost/api-library/php/api.php?book_action=get_book').
@@ -137,10 +135,28 @@
 
                     fetch(url).
                         then(res => res.json()).
-                        then(data => console.log(data)).
+                        then(data => {
+
+                            console.log(data);
+                            verify = data.res;
+                            if (verify) {
+
+                                alert("El libro a sido agregado a tu lista");
+
+                            } else if (data.status == "libro existente") {
+
+                                alert("Este libro ya se encuentra en tu lista");
+                            } else {
+                                alert("Acceda a su cuenta para continuar");
+                            }
+
+                        }).
                         catch(error => console.log(error));
 
                 })
+
+                let download = document.getElementById('btn_download');
+                download.addEventListener("click", event => location.href = json.url_download);
 
 
             }
