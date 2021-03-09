@@ -23,12 +23,12 @@
 
 </head>
 
-<body>
+<body onload="verify_user()">
     <section class="site-title-bar index">
 
         <section class="container container-flex">
 
-            <h1>Tecno Library</h1>
+            <h1><a href="index.html">Tecno Library</a></h1>
 
             <article class="login-section" id="login">
 
@@ -55,8 +55,11 @@
             </section>
 
             <section class="login-section-activated" id="userIcon">
-                <i class="fas fa-user" id="user-icon" style="font-size:24px;"></i>
-                <h2 id="username"></h2>
+                <article>
+                    <i class="fas fa-user-circle" id="user-icon" style="font-size:32px;"></i>
+                    <h2 id="username"></h2>
+                    <i class="fas fa-sign-out-alt" id="logout" style="font-size:32px;"></i>
+                </article>
             </section>
 
         </section>
@@ -176,6 +179,38 @@
         //  3. Subir el formulario
         let form = document.getElementById("form");
 
+        // 4. Acceder a la lista de libros del usuario
+        let myList = document.getElementById('user-icon');
+        let myList_ = document.getElementById('username');
+            myList.addEventListener('click', event => {
+                location.href = 'http://localhost:8080/api-library/userBooks.html'
+        })
+        myList_.addEventListener('click', event => {
+                location.href = 'http://localhost:8080/api-library/userBooks.html'
+            })
+
+        // 5. Cerrar sesion
+        let logout = document.getElementById('logout');
+        logout.addEventListener('click', event => {
+            fetch('http://localhost:8080/api-library/php/api.php?session_action=session_destroy').
+                    then(res =>
+                        res.json()
+                        //console.log(res);
+                    ).
+                then(data => {
+
+                    console.log(data);
+                    verify = data.res
+                        if (verify) {
+
+                            //location.href = 'http://localhost/api-library/';
+                            location.href = 'http://localhost:8080/api-library/';
+               
+                        }
+
+                });
+        })
+
         function reqUser(event) {
             //console.log(event.target.nombre.value);
             closeForm();
@@ -241,49 +276,71 @@
 
         /* Inicio de sesion  (Leer valores) */
 
-        document.getElementById("btnlogin").addEventListener("click", event => {
+        let login_input = document.getElementById('txtpassword');
+        login_input.addEventListener("keyup", (event) => {
+            if (event.keyCode === 13) {
+                start_session();
 
-            let myEmail = document.getElementById("txtemail").value
-            let myPassword = document.getElementById("txtpassword").value
+            }
+        })
+        
 
-            let params = new URLSearchParams(
+        document.getElementById("btnlogin").addEventListener("click", event => start_session());
+
+        const start_session = () => {
+                let myEmail = document.getElementById("txtemail").value
+                let myPassword = document.getElementById("txtpassword").value
+                let params = new URLSearchParams(
                 {
                     session_action: "start_session",
                     email: myEmail,
                     password: myPassword
                 }
-            ).toString();
+                ).toString();
 
-            //fetch("http://localhost/api-library/php/api.php?"+params).
-            fetch("http://localhost:8080/api-library/php/api.php?" + params).
-                then(
-                    res => res.json()
-                ).then(
-                    data => { console.log(data) }
-                )
-        })
+                //fetch("http://localhost/api-library/php/api.php?"+params).
+                fetch("http://localhost:8080/api-library/php/api.php?" + params).
+                    then(
+                        res => res.json()
+                    ).then(
+                        data => {
+
+                            verify = data.res;
+                            if (verify) {
+
+                                location.reload();
+
+                            } else {
+                                alert("Verifique su correo y su contraseña");
+                            }
+                        }
+                    )
+
+        }
 
         function verify_user() {
 
-            let res;
             fetch("http://localhost:8080/api-library/php/api.php?session_action=get_user").
                 then(
                     res => res.json()
                 ).then(
                     data => {
                         verify = data.res
+                        if (verify) {
+
+                            let login = document.getElementById('login');
+                            login.style.display = "none";
+
+                            let userIcon = document.getElementById('userIcon');
+                            userIcon.style.display = "block";
+
+                            let userName = document.getElementById('username');
+                            userName.innerHTML = "";
+                            userName.innerHTML = data.nombre + " " + data.apellido;
+               
+                        }
                     } 
                 )
-
-            if (verify) {
-
-                let userIcon = document.getElementById('userIcon');
-                let userName = document.getElementById('username');
-                let login = document.getElementById('login');
-
-               
-            }
-
         }
 
     </script>

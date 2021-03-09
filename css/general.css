@@ -22,6 +22,13 @@ header {
     /*opacity: 0.8;*/
     /*box-shadow: 2px 2px 5px #ffffff;*/
 }
+.site-title-bar a{
+    color: white;
+    text-decoration:none;
+    /*background: #00bfa6;*/
+    /*opacity: 0.8;*/
+    /*box-shadow: 2px 2px 5px #ffffff;*/
+}
 
 .index {
     position: fixed;
@@ -177,6 +184,7 @@ header {
     font-weight: 300;
     border-radius: 5px;
     box-shadow: 0px 0px 5px 1px #BDBDBD;
+    cursor:pointer;
 }
 
 .book-element img{
@@ -332,6 +340,7 @@ header {
     padding: 1rem;
     text-align: center;
     box-shadow: 0px 0px 5px 1px #BDBDBD;
+    cursor: pointer;
 }
 
 .book-element-user h2 {
@@ -339,7 +348,28 @@ header {
     font-size: 1.2rem;
 }
 
-.login-section-activated{
+.login-section-activated {
     display: none;
-
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 50%;
+    padding: 1rem;
+    cursor: pointer;
 }
+
+.login-section-activated article {
+    padding:0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.login-section-activated h2{
+    padding:0;
+    margin: 0 auto;
+    font-size: 24px;
+    width: 80%;
+}
+
+#user-icon:hover, #username:hover, #logout:hover {
+    color: #008263;
+}
+

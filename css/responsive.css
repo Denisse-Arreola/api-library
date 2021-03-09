@@ -36,6 +36,21 @@
     .book-element img{
         width:200px;
     }
+
+    .login-section-activated {
+        margin: 0 auto;
+        background-color: unset;
+    }
+
+    .login-section-activated article {
+        margin: 0 auto;
+        width:70%;
+        justify-content: space-around;
+    }
+
+    #user-icon:hover, #username:hover, #logout:hover {
+        color: #008263;
+    }
 }
 
 /*------------------------------------------------------------------------------------------------------------------------------
@@ -74,6 +89,21 @@
     }
     .book-element img{
         width:200px;
+    }
+
+    .login-section-activated {
+        margin: 0 auto;
+        background-color: unset;
+    }
+
+    .login-section-activated article {
+        margin: 0 auto;
+        width:70%;
+        justify-content: space-around;
+    }
+
+    #user-icon:hover, #username:hover, #logout:hover {
+        color: #008263;
     }
 }
 
