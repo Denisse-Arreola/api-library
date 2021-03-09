@@ -7,6 +7,8 @@
     <meta meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel=StyleSheet href="css/circulo.css" type="text/css" media=screen>
     <link rel="stylesheet" href="css/general.css" type="text/css">
     <link rel="stylesheet" href="css/responsive.css" type="text/css">
     <link rel="stylesheet" href="css/dialogos.css" type="text/css">
@@ -14,7 +16,6 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="js/Api.js" type="module"  ></script>
     <script src="js/Book.js" type="module" ></script>
-    <script src="js/Fetch.js" type="module" ></script>
     <script src="js/Icons.js" crossorigin="anonymous"></script>
 
     <!--<link rel="shortcut icon" href="./img/Loto_icon.png">-->
@@ -73,9 +74,9 @@
 
             <section class="site-search-background">
 
-                <h1>Probando colores blancos</h1>
-                <h2>Algún eslogan</h2>
-                <p>Algún comentario antes del buscador</p>
+                <h1>Una Api pública para Libros técnicos.</h1>
+                <h2>Libre y respaldado por una gran comunidad. El conocimiento es para todos.</h2>
+                <p>Escribe Cualquier palabra.</p>
 
                 <article class="search-input-button">
                     <input id="txtSearch" type="text" placeholder="Título, autor o palabra clave" />
@@ -91,13 +92,14 @@
 
     <section class="most-relevant">
 
-        <section class="container">
+        <section class="container" id="middleSection">
             <h3 id="busqueda">Más destacados</h3>
         </section>
 
     </section>
 
     <!--SECCION EN LA QUE SE MOSTRARA LA LISTA DE LIBROS TRAIDOS DE LA API-->
+    <section class="container" style="padding: 1rem;" id="load"></section>
     <section class="list-books container" id="bookList"></section>
 
     <dialog id="registro">
@@ -126,7 +128,8 @@
 
     <script type="module">
         import Api from './js/Api.js'
-        import Fetch from './js/Fetch.js'
+        import Book from './js/Book.js'
+
 
         // SECTION PARA LOS ADD-EVENT-LISTENER
         //  1. Activar la barra de busqueda
@@ -140,23 +143,54 @@
         })
 
         document.getElementById("btnSearch").
-            addEventListener("click", event => connect())
+        addEventListener("click", event => connect())
+
+        // 2. Activar metodo on load.
+        window.onload = () => connect()
+
 
         // Conectar con la API
         const connect = () => {
 
-            if (barraBusqueda.value != "") {
+            cleanSection()
 
-                let api = new Api()
-                api.searchBooks(barraBusqueda.value)
-
-                let url = api.getUrl()
-                Fetch(url, "bookList") //Función que viene de.; ./js/Fetch.js
-            } else {
-                console.log("Ingresa un valor")
-            }
+            let loadingCircle = document.createElement("SECTION")
+            loadingCircle.className="preloader"
+            document.getElementById("load").append(loadingCircle)
 
 
+            let api = new Api()
+            api.searchBooks(barraBusqueda.value)
+
+            let url = api.getUrl()
+            
+            fetch(url).
+            then(res => res.json()).
+            then(data => {
+                data.forEach(element => {
+                    let obj = new Book()                
+                    obj.createBook("bookList", element);
+                })
+
+                document.getElementById("load").removeChild(loadingCircle)
+            }).
+            catch(error => {console.log(
+                        {
+                            error : "Solicitud imposible",
+                            res : error
+                        }
+                    )
+                }
+            )
+
+
+        }
+
+        // Limpiar Seccion
+        let cleanSection = () => {
+            let section = document.getElementById("bookList")
+
+            section.innerHTML = ""
         }
 
     </script>
