@@ -30,7 +30,7 @@
 
             <h1>Tecno Library</h1>
 
-            <article class="login-section">
+            <article class="login-section" id="login">
 
                 <article class="input user">
                     <i class="fas fa-user" style="font-size:24px;"></i>
@@ -50,8 +50,13 @@
             </article>
 
             <!--Sección oculta unicamente para celular-->
-            <section class="login-section-responsive">
+            <section class="login-section-responsive" id="login_res" >
                 <i class="fas fa-user" id="user-icon" style="font-size:24px;"></i>
+            </section>
+
+            <section class="login-section-activated" id="userIcon">
+                <i class="fas fa-user" id="user-icon" style="font-size:24px;"></i>
+                <h2 id="username"></h2>
             </section>
 
         </section>
@@ -257,6 +262,30 @@
                     data => { console.log(data) }
                 )
         })
+
+        function verify_user() {
+
+            let res;
+            fetch("http://localhost:8080/api-library/php/api.php?session_action=get_user").
+                then(
+                    res => res.json()
+                ).then(
+                    data => {
+                        verify = data.res
+                    } 
+                )
+
+            if (verify) {
+
+                let userIcon = document.getElementById('userIcon');
+                let userName = document.getElementById('username');
+                let login = document.getElementById('login');
+
+               
+            }
+
+        }
+
     </script>
 
 

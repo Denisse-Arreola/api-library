@@ -1,3 +1,4 @@
+import Api from './Api.js'
 
 class Book {
 
@@ -65,6 +66,73 @@ class Book {
         } else {
             console.log("No se recibió una sección para el libro");
         }
+    }
+
+    bookUser(parent, book_ID) {
+        let book = document.createElement("section");
+        book.className = "book-element-user";
+
+        let ID;
+
+        if (typeof book !== 'undefined') {
+
+            let api = new Api();
+            api.getBook(book_ID);
+            let url = api.getUrl();
+            fetch(url).
+                then(res => res.json()).
+                then(data => {
+
+                    let bookData = data[0];
+                    this.cover.src = bookData.cover;
+                    this.title.innerHTML = bookData.title;
+                    ID = bookData.ID;
+
+                }).
+                catch(error => console.log(error));
+
+            book.addEventListener("click",
+                event => {
+                    //fetch('http://localhost/api-library/php/api.php?book_action=set_book&book_ID='+ ID).
+                    fetch('http://localhost:8080/api-library/php/api.php?book_action=set_book&book_ID=' + ID).
+                        then(res => res.json()).
+                        then(
+                            data => {
+                                //location.href = 'http://localhost/api-library/viewBook.html'
+                                location.href = 'http://localhost:8080/api-library/viewBook.html'
+                            }
+                        )
+                }
+            )
+
+
+            book.appendChild(this.cover);
+            book.appendChild(this.title);
+            //book.appendChild(data);
+
+        } else {
+
+            console.log("Variable vacia");
+        }
+
+
+        if (typeof parent !== 'undefined') {
+            let parent_ = document.getElementById(parent);
+
+            if (parent_ != null) {
+                parent_.appendChild(book);
+
+            } else {
+
+                console.log("La sección anexada no existe");
+            }
+
+        } else {
+
+            console.log("No se recibió una sección para el libro");
+        }
+        
+
     }
 
 }

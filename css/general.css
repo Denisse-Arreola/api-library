@@ -219,7 +219,7 @@ header {
 }
 
 .book-content img{
-    width: 28%;
+    width:100%;
 }
 
 .content {
@@ -228,14 +228,58 @@ header {
     padding: 2rem;
 }
 
-.book-content-buttons{
+.content h1{
+    padding: 0;
+    margin: 0;
+    font-size: 1.4rem;
+    color: #009474;
+}
+
+.content h2{
+    padding: 0.6rem 0;
+    margin: 0;
+    font-size: 0.8rem;
+    color: #616161;
+}
+
+.content h3, .content p {
+/*    padding: 1rem 0;*/
+    margin: 0.2rem 0;
+    font-size: 0.9rem;
+    color: #424242;
+}
+
+.content h4{
+    padding: 0.6rem 0;
+    margin: 0;
+    font-size: 1.2rem;
+    color: #424242;
+}
+
+#content {
+    padding: 0.6rem 0;
+    margin: 0;
+    font-size: 1rem;
+    color: #424242;
+    text-align:justify;
+}
+
+.content-details {
+    border-top: 1px solid #BDBDBD;
+    border-bottom: 1px solid #BDBDBD;
+    padding: 1rem 0;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.book-content-buttons {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
 }
 
 .book-content-buttons button{
-    background-color: #009373;
-    width: 40%;
+    width: 49.5%;
     color: white;
     border: none;
     border-radius: 0px;
@@ -244,4 +288,58 @@ header {
     text-align:center;
     padding: 1rem;
     font-size: 1rem;
+}
+
+.book-content-buttons section{
+    display:flex;
+    justify-content:space-between;
+}
+
+#btn_add {
+    background-color: #ddf4f0;
+    border: 1px solid #00bfa6;
+    color: #00bfa6;
+}
+
+#btn_add:hover{
+    background-color: #00bfa6;
+    border: 1px solid #ddf4f0;
+    color: #ddf4f0;
+}
+
+#btn_download {
+    background-color: #009373;
+}
+
+#btn_download:hover {
+    background-color: #007254;
+}
+
+#userList{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+    padding: 2rem 0;
+}
+
+#userList img{
+    width:80%;
+    margin: 0 auto;
+}
+
+.book-element-user {
+    background-color: white;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0px 0px 5px 1px #BDBDBD;
+}
+
+.book-element-user h2 {
+    color: #00a080;
+    font-size: 1.2rem;
+}
+
+.login-section-activated{
+    display: none;
+
 }

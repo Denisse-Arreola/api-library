@@ -89,7 +89,7 @@ if(isset($_GET['session_action'])){
         }
         
     }else if ($_GET['session_action'] == "add_book" && isset($_GET['book_ID'])){
-        //Tu pedacito Dani
+        
         if (verify_session()){
            // session_start();
             $user_data = json_decode($_SESSION["user"]);
@@ -99,7 +99,15 @@ if(isset($_GET['session_action'])){
             
             
         } 
-        
+     
+    }else if($_GET['session_action'] == "get_user"){
+
+        if (verify_session()){
+           // session_start();
+
+            echo  $_SESSION['user'];
+            
+        }
 
     }else{
 

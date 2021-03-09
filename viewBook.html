@@ -35,19 +35,26 @@
         </section>
 
         <section class="book-content container" id="book-content">
-            <img src="http://collection.openlibra.com.s3.amazonaws.com/covers/2011/04/disenoAgilConTDD.jpg"/>
-            <section class="content">
-                <article></article>
-                <article></article>
-                <article></article>
-                <article></article>
-                <article></article>
-                <section></section>
-
-                <section class="book-content-buttons">
-                    <button id="btaAddbook";>Agregar a mi lista</button>
-                    <button>Descarga</button>
+            <section class="book-content-buttons">
+                <img id="cover"/>
+                <section>
+                    <button id="btn_add";>Agregar a mi lista</button>
+                    <button id="btn_download">Descarga</button>
                 </section>
+            </section>
+            <section class="content">
+                <h1 id="title"></h1>
+                <h2 id="author"></h2>
+                <section class="content-details">
+                    <p>Año: </p>
+                    <h3 id="year"></h3>
+                    <p>Paginas: </p>
+                    <h3 id="pages"></h3>
+                    <p>Idioma: </p>
+                    <h3 id="lang"></h3>
+                </section>
+                <h4>Contenido</h4>
+                <section id="content"></section>
             </section>
             
         </section>
@@ -56,11 +63,7 @@
         <script type="module">
             import Api from './js/Api.js'
             import Fetch from './js/Fetch.js'
-            
-            let btn = document.getElementById("btaAddbook").addEventListener('click',event=>{
-                
-                fetch('http://localhost/api-library/php/api.php?session_action=add_book&book_ID=')
-            });
+           
 
             //fetch('http://localhost/api-library/php/api.php?book_action=get_book').
             fetch('http://localhost:8080/api-library/php/api.php?book_action=get_book').
@@ -88,7 +91,49 @@
             }
 
             function extract_data(json) {
-                console.log(json);
+                //console.log(json);
+
+                let title = document.getElementById('title');
+                title.innerHTML = json.title;
+
+                let author = document.getElementById('author');
+                author.innerHTML = json.author;
+
+                let year = document.getElementById('year');
+                year.innerHTML = json.publisher_date;
+
+                let pages = document.getElementById('pages');
+                pages.innerHTML = json.pages;
+
+                let lang = document.getElementById('lang');
+                lang.innerHTML = json.language;
+
+                let content = document.getElementById('content');
+                content.innerHTML = json.content;
+
+                let cover = document.getElementById('cover');
+                cover.src = json.cover;
+
+                let button = document.getElementById('btn_add');
+                button.addEventListener("click", event => {
+
+                    let params = new URLSearchParams({
+
+                        session_action: "add_book",
+                        book_ID: json.ID
+
+                    }).toString();
+
+                    //let url = 'http://localhost/api-library/php/api.php?' + params;
+                    let url = 'http://localhost:8080/api-library/php/api.php?' + params;
+
+                    fetch(url).
+                        then(res => res.json()).
+                        then(data => console.log(data)).
+                        catch(error => console.log(error));
+
+                })
+
 
             }
 

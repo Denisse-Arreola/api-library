@@ -21,12 +21,58 @@
 </head>
 <body>
 
-</body>
-    <script>
-        fetch('http://localhost/api-library/php/api.php?session_action=session_books').
-        then(res => res.json()). 
-        then(data => console.log(data))
+        <section class="site-title-bar">
+
+            <section class="container container-flex">
+
+                <h1>Tecno Library</h1>
+
+            </section>
+
+        </section>
+
+    
+        <section class="most-relevant">
+            <section class="container">
+                <h3 id="busqueda">Lista de libros</h3>
+            </section>
+        </section>
+
+    <section id="userList" class="container"></section>
+        
+    <script type="module">
+
+        import Api from './js/Api.js'
+        import Fetch from './js/Fetch.js'
+        import Book from './js/Book.js';
+
+        //fetch('http://localhost/api-library/php/api.php?session_action=session_books').
+        fetch('http://localhost:8080/api-library/php/api.php?session_action=session_books').
+            then(res => res.json()).
+            then(data => {
+
+                console.log(data);
+                show_books(data);
+            });
+
+        function show_books(array) {
+
+            //let parent = document.getElementById('userList');
+            let books = [];
+
+            for (let x = 0; x < array.length; x++) {
+
+                books[x] = new Book();
+                books[x].bookUser('userList', array[x]);
+
+            }
+
+        }
 
     </script>
+
+
+</body>
+
 
 </html>
