@@ -56,24 +56,10 @@ if(isset($_GET['session_action'])){
             error();
         }
 
-    } else if($_GET['session_action'] == "session_verify"){
-
-        session_start();
-        if(empty($_SESSION)){
-				error();
-
-        }else{
-            echo json_encode(Array(
-                    'status' => 'Sesion activa',
-                    'res' => true
-                    )
-            );
-        }
-
-    } else if ($_GET['session_action'] == "session_books") {
+     } else if ($_GET['session_action'] == "session_books") {
 
         if (verify_session()){
-            session_start();
+           
             $user_data = json_decode($_SESSION["user"]);
         
             $user = new usuario($user_data->id);
@@ -104,6 +90,15 @@ if(isset($_GET['session_action'])){
         
     }else if ($_GET['session_action'] == "add_book" && isset($_GET['book_ID'])){
         //Tu pedacito Dani
+        if (verify_session()){
+           // session_start();
+            $user_data = json_decode($_SESSION["user"]);
+        
+            $user = new usuario($user_data->id);
+            echo  $user->newbook($_GET['book_ID']);
+            
+            
+        } 
         
 
     }else{
