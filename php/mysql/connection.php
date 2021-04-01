@@ -5,8 +5,8 @@ class mysqlConnection {
         public static function getConnection(){
                   
 
-               $var='{ "mysqlCrendentials" : { "server" : "localhost", "user" : "root", "pass" : "", "db" : "techno_library" } }';                              
-               //$var='{ "mysqlCrendentials" : { "server" : "localhost", "user" : "root", "pass" : "Losseisbastardos12_", "db" : "techno_library" } }';
+                //$var='{ "mysqlCrendentials" : { "server" : "localhost", "user" : "root", "pass" : "", "db" : "techno_library" } }';                              
+                $var='{ "mysqlCrendentials" : { "server" : "localhost", "user" : "root", "pass" : "Losseisbastardos12_", "db" : "techno_library" } }';
 
                $config=json_decode($var,true);
 

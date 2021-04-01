@@ -24,12 +24,19 @@ class Book {
                 event => {
                     //console.log('http://localhost:8080/api-library/php/api.php?book_action=get_book&book_ID='+json.ID)
                     //fetch('http://localhost/api-library/php/api.php?book_action=set_book&book_ID='+json.ID).
-                    fetch('http://localhost:8080/api-library/php/api.php?book_action=set_book&book_ID='+json.ID).
+
+                    let url = new URL('http://localhost:8080/api-library/php/api.php?book_action=set_book&book_ID='+json.ID)
+                    url.port = 80
+
+                    fetch(url).
                     then(res => res.json()). 
                     then( 
                         data => {
                             //location.href = 'http://localhost/api-library/viewBook.html'
-                            location.href = 'http://localhost:8080/api-library/viewBook.html'
+
+                            let url = new URL('http://localhost:8080/api-library/viewBook.html')
+                            url.port = 80
+                            location.href = url
                         }
                     )
 
@@ -93,13 +100,19 @@ class Book {
 
             book.addEventListener("click",
                 event => {
+                    let url = new URL('http://localhost:8080/api-library/php/api.php?book_action=set_book&book_ID=' + ID)
+                    url.port = 80
+                    location.href = url
+
                     //fetch('http://localhost/api-library/php/api.php?book_action=set_book&book_ID='+ ID).
-                    fetch('http://localhost:8080/api-library/php/api.php?book_action=set_book&book_ID=' + ID).
+                    fetch(url).
                         then(res => res.json()).
                         then(
                             data => {
                                 //location.href = 'http://localhost/api-library/viewBook.html'
-                                location.href = 'http://localhost:8080/api-library/viewBook.html'
+                                let url = new URL('http://localhost:8080/api-library/viewBook.html')
+                                url.port = 80
+                                location.href = url
                             }
                         )
                 }

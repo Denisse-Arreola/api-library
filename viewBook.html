@@ -72,7 +72,10 @@
            
 
             //fetch('http://localhost/api-library/php/api.php?book_action=get_book').
-            fetch('http://localhost:8080/api-library/php/api.php?book_action=get_book').
+            let url = new URL('http://localhost:8080/api-library/php/api.php?book_action=get_book')
+            url.port = 80
+
+            fetch(url).
             then(res => res.json()).
                 then(data => {
        
@@ -133,6 +136,10 @@
                     //let url = 'http://localhost/api-library/php/api.php?' + params;
                     let url = 'http://localhost:8080/api-library/php/api.php?' + params;
 
+                    url = new URL(url)
+                    url.port = 80
+
+
                     fetch(url).
                         then(res => res.json()).
                         then(data => {
@@ -168,15 +175,24 @@
             let myList = document.getElementById('user-icon');
             let myList_ = document.getElementById('username');
                 myList.addEventListener('click', event => {
-                    location.href = 'http://localhost:8080/api-library/userBooks.html'
+                    let url = new URL('http://localhost:8080/api-library/userBooks.html')
+                    url.port = 80
+
+                    location.href = url
             });
             myList_.addEventListener('click', event => {
-                    location.href = 'http://localhost:8080/api-library/userBooks.html'
+                    let url = new URL('http://localhost:8080/api-library/userBooks.html')
+                    url.port = 80
+
+                    location.href = url
             })
 
             function verify_user() {
 
-                fetch("http://localhost:8080/api-library/php/api.php?session_action=get_user").
+                let url = new URL("http://localhost:8080/api-library/php/api.php?session_action=get_user")
+                url.port = 80
+
+                fetch(url).
                     then(
                         res => res.json()
                     ).then(
@@ -198,7 +214,11 @@
             // 5. Cerrar sesion
             let logout = document.getElementById('logout');
             logout.addEventListener('click', event => {
-                fetch('http://localhost:8080/api-library/php/api.php?session_action=session_destroy').
+                
+                let url = new URL("http://localhost:8080/api-library/php/api.php?session_action=get_user")
+                url.port = 80
+
+                fetch(url).
                         then(res =>
                             res.json()
                             //console.log(res);
